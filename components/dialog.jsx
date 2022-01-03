@@ -38,7 +38,7 @@ export default function FormDialog({ open, handleClose, handleSubmit }) {
             id="outlined-number"
             label="Amount (in ETH)"
             type="number"
-            className="mt-5"
+            className="mt-5 mr-5"
             InputLabelProps={{
               shrink: true,
             }}

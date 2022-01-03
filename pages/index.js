@@ -2,7 +2,7 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import BasicCard from "../components/cards";
 import FormDialog from "../components/dialog";
-import ButtonAppBar from "../components/appbar";
+import Typography from "@mui/material/Typography";
 
 const data = [
   {
@@ -40,10 +40,13 @@ export default function Home() {
   return (
     <>
       <div className="pt-8 px-10">
-        <ButtonAppBar />
-        <p className="pt-3">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, eius!
-        </p>
+        <div className="flex items-center justify-center ">
+          <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
+            Crowdfund dapp
+          </Typography>
+          <Button variant="outlined">Connect Wallet</Button>
+        </div>
+
         <div className="my-5 w-full text-center ">
           <Button variant="outlined" onClick={() => setOpen(true)}>
             Start Project
