@@ -49,13 +49,17 @@ export default function BasicCard({
             Show more
           </Link>
           <Typography className="py-2">Duration:{time}</Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
+          <Typography
+            sx={{ mb: 1.5 }}
+            color="text.secondary"
+            className="bg-sky-600 hover:bg-sky-700"
+          >
             Status: {status}
           </Typography>
           <Typography variant="body2" className="font-bold">
             Goal Amount {totalAmount} ETH
           </Typography>
-          <div className="flex items-center justify-between p-5">
+          <div className="flex items-center p-5">
             <TextField
               id="outlined-number"
               label="Amount (in ETH)"
@@ -65,7 +69,10 @@ export default function BasicCard({
                 shrink: true,
               }}
             />
-            <Button variant="outlined" className="mr-10 align-float-center">
+            <Button
+              variant="contained text-white bg-[#000000] hover:bg-[#6e695c]"
+              className="ml-5 mt-5"
+            >
               Fund
             </Button>
           </div>

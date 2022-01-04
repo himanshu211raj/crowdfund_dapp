@@ -3,6 +3,9 @@ import Button from "@mui/material/Button";
 import BasicCard from "../components/cards";
 import FormDialog from "../components/dialog";
 import Typography from "@mui/material/Typography";
+// import crowdfundInstance from "../contracts/crowdfundInstance";
+// import crowdfundProject from "../contracts/crowdfundProjectInstance";
+// import web3 from "../contracts/web3";
 
 const data = [
   {

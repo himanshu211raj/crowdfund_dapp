@@ -17,7 +17,6 @@ export default function FormDialog({ open, handleClose, handleSubmit }) {
             To create a new project to be funded, please fill out the form.
           </DialogContentText>
           <TextField
-            autoFocus
             margin="dense"
             id="name"
             label="Title"
@@ -26,7 +25,6 @@ export default function FormDialog({ open, handleClose, handleSubmit }) {
             variant="standard"
           />
           <TextField
-            autoFocus
             margin="dense"
             id="name"
             label="Description"
