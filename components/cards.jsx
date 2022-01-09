@@ -1,36 +1,24 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import LinearProgress from "@mui/material/LinearProgress";
-import { styled } from "@mui/material/styles";
+// import LinearProgress from "@mui/material/LinearProgress";
 import TextField from "@mui/material/TextField";
-import { Link } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import LinearWithValueLabel from "./LinearProgress";
 
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-  >
-    •
-  </Box>
-);
-
-export default function BasicCard({
+export default function OutlinedCard({
   title,
-  time,
+  duration,
   description,
   status,
-  totalAmount,
-  amountRaised,
+  goalAmount,
+  raisedAmount,
 }) {
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -39,85 +27,96 @@ export default function BasicCard({
   };
   return (
     <>
-      <Card sx={{ Width: 275 }} className="my-3">
-        <CardContent>
-          <Typography className="font-bold text-3xl">{title}</Typography>
-          <Typography noWrap component="div">
-            {description}
-          </Typography>
-          <Link className="cursor-pointer" onClick={() => setIsOpen(true)}>
-            Show more
-          </Link>
-          <Typography className="py-2">Duration:{time}</Typography>
-          <Typography
-            sx={{ mb: 1.5 }}
-            color="text.secondary"
-            className="bg-sky-600 hover:bg-sky-700"
-          >
-            Status: {status}
-          </Typography>
-          <Typography variant="body2" className="font-bold">
-            Goal Amount {totalAmount} ETH
-          </Typography>
-          <div className="flex items-center p-5">
-            <TextField
-              id="outlined-number"
-              label="Amount (in ETH)"
-              type="number"
-              className="mt-5"
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-            <Button
-              variant="contained text-white bg-[#000000] hover:bg-[#6e695c]"
-              className="ml-5 mt-5"
-            >
-              Fund
-            </Button>
-          </div>
-
-          <div className="flex items-center justify-center px-5">
+      <div className="flex flex-direction: row lg: col-3 md: col-2">
+        <Card className="my-3 max-w-sm mr-3" variant="outlined">
+          <CardContent>
             <Typography
-              className="text-center font-semibold"
-              sx={{ width: "10%" }}
+              className="font-bold text-3xl"
+              color="[#000000]"
+              gutterBottom
             >
-              {amountRaised} ETH
+              {title}
             </Typography>
-            <LinearProgress
-              className="mx-20 my-4"
-              variant="determinate"
-              value={(amountRaised / totalAmount) * 100}
-              sx={{
-                borderRadius: "10px",
-                width: "80%",
-                height: "10px",
-                marginTop: "5px",
-                backgroundColor: "rgba(0,0,0,0.1)",
-              }}
-            />
-            <Typography className="font-semibold">{totalAmount} ETH</Typography>
-          </div>
-        </CardContent>
-      </Card>
-      {isOpen && (
-        <Dialog
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle>{title}</DialogTitle>
-          <DialogContent>
-            <DialogContentText>{description}</DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose} autoFocus>
-              Ok
+            <Typography noWrap component="h2" variant="h5">
+              {description}
+            </Typography>
+            <Button
+              className="cursor-pointer"
+              size="small"
+              onClick={() => setIsOpen(true)}
+            >
+              Show more
             </Button>
-          </DialogActions>
-        </Dialog>
-      )}
+            <Typography className="py-2">Up until {duration}</Typography>
+            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+              Status: <span className="bg-sky-300 p-2">{status}</span>
+            </Typography>
+            <Typography variant="body2" className="font-bold">
+              Goal Amount {goalAmount} ETH
+            </Typography>
+            <div className="flex items-center p-5">
+              <TextField
+                id="outlined-number"
+                label="Amount (in ETH)"
+                type="number"
+                className="mt-5"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+              <Button
+                variant="contained text-white bg-[#000000] hover:bg-[#6e695c]"
+                className="ml-5 mt-5"
+              >
+                Fund
+              </Button>
+            </div>
+
+            <div className="flex items-center justify-center ">
+              <Typography
+                className="text-center font-semibold"
+                sx={{ width: "10%" }}
+              >
+                {raisedAmount} ETH
+              </Typography>
+              {/* <LinearProgress
+                className="mx-20 my-4"
+                variant="determinate"
+                value={(raisedAmount / goalAmount) * 100}
+                sx={{
+                  borderRadius: "10px",
+                  width: "80%",
+                  height: "10px",
+                  marginTop: "5px",
+                  backgroundColor: "rgba(0,0,0,0.1)",
+                }}
+              /> */}
+              <LinearWithValueLabel />
+              <Typography className="font-semibold">
+                {goalAmount} ETH
+              </Typography>
+            </div>
+          </CardContent>
+        </Card>
+        {isOpen && (
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle>{title}</DialogTitle>
+            <DialogContent>
+              <DialogContentText>{description}</DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose} autoFocus>
+                Ok
+              </Button>
+            </DialogActions>
+          </Dialog>
+        )}
+      </div>
     </>
   );
 }

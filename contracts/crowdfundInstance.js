@@ -3,6 +3,7 @@ import web3 from "./web3";
 
 const address = "0xd9145CCE52D386f254917e481eB44e9943F39138"; // Your deployed contract's address goes here
 
+// Your ABI goes here (Crowdfunding contract)
 const abi = [
   {
     anonymous: false,
@@ -89,7 +90,6 @@ const abi = [
     type: "function",
   },
 ];
-// Your ABI goes here (Crowdfunding contract)
 
 const instance = new web3.eth.Contract(abi, address);
 

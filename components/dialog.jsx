@@ -6,8 +6,16 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import DateTimePicker from "@mui/lab/DateTimePicker";
 
 export default function FormDialog({ open, handleClose, handleSubmit }) {
+  const [value, setValue] = React.useState(new Date(" "));
+
+  const handleChange = (newValue) => {
+    setValue(newValue);
+  };
   return (
     <div>
       <Dialog open={open} onClose={handleClose}>
@@ -41,15 +49,15 @@ export default function FormDialog({ open, handleClose, handleSubmit }) {
               shrink: true,
             }}
           />
-          <TextField
-            id="outlined-number"
-            label="Duration (in days)"
-            type="number"
-            className="mt-5"
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DateTimePicker
+              className=""
+              label="Select duration"
+              value={value}
+              onChange={handleChange}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
