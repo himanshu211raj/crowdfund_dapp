@@ -10,7 +10,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import LinearWithValueLabel from "./LinearProgress";
+import LinearProgressWithLabel from "./LinearProgress";
 
 export default function OutlinedCard({
   title,
@@ -91,7 +91,9 @@ export default function OutlinedCard({
                   backgroundColor: "rgba(0,0,0,0.1)",
                 }}
               /> */}
-              <LinearWithValueLabel />
+              <LinearProgressWithLabel
+                progress={(raisedAmount / goalAmount) * 100}
+              />
               <Typography className="font-semibold">
                 {goalAmount} ETH
               </Typography>

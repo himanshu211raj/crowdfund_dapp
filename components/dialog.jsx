@@ -11,7 +11,7 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DateTimePicker from "@mui/lab/DateTimePicker";
 
 export default function FormDialog({ open, handleClose, handleSubmit }) {
-  const [value, setValue] = React.useState(new Date(" "));
+  const [value, setValue] = React.useState(new Date());
 
   const handleChange = (newValue) => {
     setValue(newValue);
@@ -40,24 +40,25 @@ export default function FormDialog({ open, handleClose, handleSubmit }) {
             fullWidth
             variant="standard"
           />
-          <TextField
-            id="outlined-number"
-            label="Amount (in ETH)"
-            type="number"
-            className="mt-5 mr-5"
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DateTimePicker
-              className=""
-              label="Select duration"
-              value={value}
-              onChange={handleChange}
-              renderInput={(params) => <TextField {...params} />}
+          <div style={{ display: "flex", marginTop: 10 }}>
+            <TextField
+              id="outlined-number"
+              label="Amount (in ETH)"
+              type="number"
+              className="mr-5"
+              InputLabelProps={{
+                shrink: true,
+              }}
             />
-          </LocalizationProvider>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <DateTimePicker
+                label="Select duration"
+                value={value}
+                onChange={handleChange}
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </LocalizationProvider>
+          </div>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
